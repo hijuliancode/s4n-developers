@@ -1,13 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+// Styles
+import { createGlobalStyle, ThemeProvider } from "styled-components";
+import { normalize, Normalize } from "styled-normalize";
+import * as Theme from "./config/theme/";
+
+export const GlobalStyle = createGlobalStyle`
+  ${Normalize}
+`;
+
 ReactDOM.render(
-  <React.StrictMode>
+  <ThemeProvider theme={Theme}>
+    <GlobalStyle/>
     <App />
-  </React.StrictMode>,
+  </ThemeProvider>,
   document.getElementById('root')
 );
 
