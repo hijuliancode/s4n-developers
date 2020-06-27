@@ -11,13 +11,13 @@ import * as Theme from "./config/theme/"
 export const GlobalStyle = createGlobalStyle`
   ${Normalize}
   /* Global Styles */
+  * { box-sizing: border-box; }
   html, body, #root { height: 100%; }
   h1, h2, h3, h4, h5, h6 { margin-top: 0;line-height: 1em; }
   p { margin-top: 0;line-height: 1.2em; }
   body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
     background-color: ${props => props.theme.lightColor};
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    font-family: ${props => props.theme.font.base}; /* base font: If the font-family app don't load */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     margin: 0;
@@ -25,6 +25,7 @@ export const GlobalStyle = createGlobalStyle`
   code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
   }
+  @keyframes animation-skeleton {0%{background-position:-200px 0;}100%{background-position:calc(200px + 100%) 0;}}
 `;
 
 ReactDOM.render(
