@@ -1,0 +1,24 @@
+/* TEAM */
+	UI Developer:Julian Sosa
+	Contact: hijuliansosa [at] gmail.com
+	Twitter: @hijuliancode
+	From:Sibate, Cundinamarca, Colombia
+
+/* THANKS */
+  Inspiration: Meraki 🦄
+	From:Universes
+
+  Ilustrations: Lukaz Zadam
+  Website: https://lukaszadam.com/illustrations
+
+  Home Design: Peter Deltono
+  Dribble: https://dribbble.com/shots/5894431-2018-Top-Four/attachments
+
+  User Design: Mateusz Dembek
+  Dribble: https://dribbble.com/shots/3470809-User-Profile/attachments/763960
+
+  /* SITE */
+	Last update:2020/28/06
+	Language: English
+	Doctype:HTML5
+	IDE: Visual Studio Code, SketchApp, 
