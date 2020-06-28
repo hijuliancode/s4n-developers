@@ -23,7 +23,6 @@ const Container = styled.main`
   background-color: ${props => props.theme.whiteColor};
   box-shadow: 0 12px 24px -4px #263391; /* TODO: add variable to this color box-shadow */
   display: flex;
-  flex-flow: column;
   min-height: calc(100% - ${props => props.theme.baseSize * 6}px);
   /* padding: ${props => props.theme.baseSize * 4}px ${props => props.theme.baseSize * 4}px; */
   width: 95vw;
@@ -38,7 +37,6 @@ const Container = styled.main`
   @media screen and (${props => props.theme.mq.lg}) {
     /* padding: ${props => props.theme.baseSize * 10}px ${props => props.theme.baseSize * 10}px; */
   }
-
 `
 
 
