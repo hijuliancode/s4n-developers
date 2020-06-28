@@ -1,5 +1,4 @@
 import React from 'react'
-import gradiIsotipo from './images/design/misc/logo-s4n.svg'
 import styled from 'styled-components'
 
 const Alerts = styled.div`
@@ -7,6 +6,7 @@ const Alerts = styled.div`
 `
 const Wrapper = styled.div`
   align-items: flex-start;
+  background-image: linear-gradient(to right, #C67DF3 0%, #384BD4 100%);
   display: flex;
   height: 100vh;
   justify-content: center;
@@ -14,19 +14,8 @@ const Wrapper = styled.div`
   position: relative;
   width: 100vw;
 `
-const Brand = styled.img`
-  object-fit: content;
-  position: absolute;
-  right: 40px;
-  top: 22px;
-  width: 64px;
-`
-const Heading = styled.h1`
-  font-size: 1rem;
-`
 const App = () => (
   <Wrapper>
-    <Brand src={gradiIsotipo} />
     <Alerts/>
   </Wrapper>
 )
