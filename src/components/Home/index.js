@@ -34,13 +34,16 @@ const AreaForm = styled.div`
   }
 `
 
-const HomeComponent = () => (
+const HomeComponent = ({getRepositories, saveCandidate}) => (
   <HomeElm>
     <AreaBanner>
       <MainBannerComponent />
     </AreaBanner>
     <AreaForm>
-      <FormRegisterComponent />
+      <FormRegisterComponent
+        getRepositories={getRepositories}
+        saveCandidate={saveCandidate}
+      />
     </AreaForm>
   </HomeElm>
 )

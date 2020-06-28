@@ -1,5 +1,6 @@
 import React, { useState, createRef } from 'react'
 import styled from 'styled-components'
+import uuid from 'uuid/dist/v4'
 
 import {
   Form,
@@ -10,6 +11,7 @@ import {
   DatePicker,
   Divider,
 } from 'antd'
+
 
 const FormRegisterElm = styled.div`
   display: flex;
@@ -42,13 +44,15 @@ const Buttons = styled.div`
   }
 `
 
-const FormRegisterComponent = () => {
+const FormRegisterComponent = ({getRepositories, saveCandidate}) => {
   const formRef = createRef();
   const [form] = Form.useForm();
-  const [candidate, setcandidate] = useState({})
 
-  const onSubmit = values => {
-    console.log('Received values of form: ', values)
+  const onSubmit = newCandidate => {
+    newCandidate.id = uuid()
+    console.log('Received newCandidate of form: ', newCandidate)
+    saveCandidate(newCandidate)
+    // getRepositories(newCandidate.github)
   };
 
   const onReset = () => {
@@ -60,7 +64,7 @@ const FormRegisterComponent = () => {
       <Heading>Welcome to <strong>S4N Developers</strong></Heading>
       <Description>With S4N Developers, remote teams can organize projects, manage shifting priorities, and get work done.</Description> {/** Asana quote */}
       <Divider orientation="left" style={{ color: '#333', fontWeight: 'normal' }}>
-        Register new user
+        Register new developer
       </Divider>
       <Form
         form={form}
@@ -82,7 +86,7 @@ const FormRegisterComponent = () => {
           </Col>
           <Col span={12}>
             <Form.Item
-              name="text"
+              name="last_name"
               label="Last Name"
               rules={[{ required: true, message: 'Please input a last name!' }]}
             >
@@ -91,7 +95,7 @@ const FormRegisterComponent = () => {
           </Col>
           <Col span={12}>
             <Form.Item
-              name="id_document"
+              name="id_card"
               label="Identification Card"
               rules={[{ required: true, message: 'Please input a Identification Card!' }]}
             >
@@ -120,8 +124,9 @@ const FormRegisterComponent = () => {
           </Col>
           <Col span={12}>
             <Form.Item
-              name="github"
+              name="github_username"
               label="Github"
+              autoComplete="off"
               rules={[ { required: true, message: 'Please input a Github!' }]}
             >
               <Input />

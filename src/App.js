@@ -1,6 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
+
+import API_GITHUB from './services/github.service';
+import { API_LS } from './services/localstorage.service';
+
 import HomeComponent from './components/Home';
 import CandidatesComponent from './components/Candidates';
 import CandidateComponent from './components/Candidate';
@@ -42,9 +46,38 @@ const Container = styled.main`
   }
 `
 
-
 const App = () => {
   const [candidates, setCandidates] = useState([])
+  const [candidate, setCandidate] = useState({keep: 'candidate'})
+  const [flagCandidates, setFlagCandidates] = useState(true)
+
+  useEffect(() => {
+    if (flagCandidates) {
+      setCandidates(API_LS.getAllCandidates)
+      setFlagCandidates(false)
+    }
+  }, [candidates])
+
+  const getRepositories = async (github_username) => {
+    console.log('getRepositories => ', github_username)
+    const data = await API_GITHUB.getRepos(github_username)
+      .then(_resp => _resp)
+      .catch(error => console.error('Error => ', error))
+    return data
+  }
+  const getUserData = async (github_username) => {
+    console.log('getUserData => ', github_username)
+    const data = await API_GITHUB.getUserData(github_username)
+      .then(_resp => _resp)
+      .catch(error => console.error('Error => ', error))
+    return data
+  }
+  const saveCandidate = async (newCandidate) => {
+    const {data} = await getUserData(newCandidate.github_username)
+    newCandidate.github_data = data;
+    API_LS.setCandidate(newCandidate)
+  }
+  
   return (
     <Wrapper>
       <Container>
@@ -53,7 +86,10 @@ const App = () => {
             <Route
               exact
               path="/"
-              component={() => <HomeComponent />}
+              component={() => <HomeComponent
+                  getRepositories={getRepositories}
+                  saveCandidate={saveCandidate}
+                />}
             />
             <Route
               exact
