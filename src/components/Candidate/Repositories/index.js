@@ -3,8 +3,10 @@ import styled from 'styled-components'
 
 const RepositoriesElm = styled.div``
 
-const RepositoriesElm = () => (
-  <RepositoriesElm></RepositoriesElm>
+const RepositoriesComponent = () => (
+  <RepositoriesElm>
+    RepositoriesElm
+  </RepositoriesElm>
 )
  
-export default RepositoriesElm;
+export default RepositoriesComponent;
