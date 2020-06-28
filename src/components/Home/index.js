@@ -1,9 +1,9 @@
 import React from 'react'
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 // Components
-import MainBannerComponent from './MainBanner';
-import FormRegisterComponent from './FormRegister';
+import MainBannerComponent from './MainBanner'
+import FormRegisterComponent from './FormRegister'
 
 const HomeElm = styled.div`
   display: flex;
@@ -13,6 +13,7 @@ const HomeElm = styled.div`
     grid-template-areas: 
       'area_banner area_form'
     ;
+    grid-template-columns: 30% 70%;
     width: 100%;
   }
 `

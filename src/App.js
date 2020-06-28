@@ -11,13 +11,16 @@ const Alerts = styled.div`
 `
 const Wrapper = styled.div`
   align-items: flex-start;
-  background-image: linear-gradient(to right, #C67DF3 0%, #384BD4 100%);
   display: flex;
-  height: 100vh;
   justify-content: center;
+  height: 100vh;
   padding-top: ${props => props.theme.baseSize * 6}px;
   position: relative;
   width: 100vw;
+  @media screen and (max-height: 600px) {
+    min-height: 100vh;
+    padding-top: 0;
+  }
 `
 const Container = styled.main`
   background-color: ${props => props.theme.whiteColor};

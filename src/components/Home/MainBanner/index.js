@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 import character01 from '../../../images/design/misc/character-01.svg'
 import character02 from '../../../images/design/misc/character-02.svg'
