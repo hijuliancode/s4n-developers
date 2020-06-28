@@ -15,7 +15,7 @@ export const API_LS = {
     let candidates = this.getAllCandidates()
     if (candidates.length) {
       // check if this candidate already exists
-      if (candidates.find(candidate => candidate.github == newCandidate.github)) {
+      if (candidates.find(candidate => candidate.github_username == newCandidate.github_username)) {
         const data = { message: 'This Candidate already exists' }
         console.error(data.message)
         return data

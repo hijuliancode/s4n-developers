@@ -58,17 +58,23 @@ const App = () => {
     }
   }, [candidates])
 
-  const getRepositories = (username) => {
-    console.log('getRepositories => ', username)
-    API_GITHUB.getUserData(username)
-    .then(data => {
-      console.log('Data =>', data)
-    })
-    .catch(error => {
-      console.error('Error => ', error)
-    })
+  const getRepositories = async (github_username) => {
+    console.log('getRepositories => ', github_username)
+    const data = await API_GITHUB.getRepos(github_username)
+      .then(_resp => _resp)
+      .catch(error => console.error('Error => ', error))
+    return data
   }
-  const saveCandidate = (newCandidate) => {
+  const getUserData = async (github_username) => {
+    console.log('getUserData => ', github_username)
+    const data = await API_GITHUB.getUserData(github_username)
+      .then(_resp => _resp)
+      .catch(error => console.error('Error => ', error))
+    return data
+  }
+  const saveCandidate = async (newCandidate) => {
+    const {data} = await getUserData(newCandidate.github_username)
+    newCandidate.github_data = data;
     API_LS.setCandidate(newCandidate)
   }
   

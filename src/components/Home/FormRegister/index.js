@@ -86,7 +86,7 @@ const FormRegisterComponent = ({getRepositories, saveCandidate}) => {
           </Col>
           <Col span={12}>
             <Form.Item
-              name="text"
+              name="last_name"
               label="Last Name"
               rules={[{ required: true, message: 'Please input a last name!' }]}
             >
@@ -95,7 +95,7 @@ const FormRegisterComponent = ({getRepositories, saveCandidate}) => {
           </Col>
           <Col span={12}>
             <Form.Item
-              name="id_document"
+              name="id_card"
               label="Identification Card"
               rules={[{ required: true, message: 'Please input a Identification Card!' }]}
             >
@@ -124,7 +124,7 @@ const FormRegisterComponent = ({getRepositories, saveCandidate}) => {
           </Col>
           <Col span={12}>
             <Form.Item
-              name="github"
+              name="github_username"
               label="Github"
               autoComplete="off"
               rules={[ { required: true, message: 'Please input a Github!' }]}
