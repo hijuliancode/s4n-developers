@@ -1,6 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
+
+import API_GITHUB from './services/github.service';
+import { API_LS } from './services/localstorage.service';
+
 import HomeComponent from './components/Home';
 import CandidatesComponent from './components/Candidates';
 import CandidateComponent from './components/Candidate';
@@ -45,6 +49,25 @@ const Container = styled.main`
 
 const App = () => {
   const [candidates, setCandidates] = useState([])
+  const [flagGetCandidates, setFlagGetCandidates] = useState(true)
+
+  const getRepositories = (username) => {
+    API_GITHUB.getUserData(username)
+    .then(data => {
+      console.log('Data =>', data)
+    })
+    .catch(error => {
+      console.error('Error => ', error)
+    })
+  }
+  useEffect(() => {
+    if (flagGetCandidates) {
+      setCandidates(API_LS.getAllCandidates)
+      setFlagGetCandidates(false)
+    }
+    
+    console.log('candidates => ', candidates)
+  }, [candidates])
   return (
     <Wrapper>
       <Container>
@@ -53,7 +76,7 @@ const App = () => {
             <Route
               exact
               path="/"
-              component={() => <HomeComponent />}
+              component={() => <HomeComponent getRepositories={getRepositories} />}
             />
             <Route
               exact

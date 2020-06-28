@@ -42,13 +42,14 @@ const Buttons = styled.div`
   }
 `
 
-const FormRegisterComponent = () => {
+const FormRegisterComponent = ({getRepositories}) => {
   const formRef = createRef();
   const [form] = Form.useForm();
   const [candidate, setcandidate] = useState({})
 
   const onSubmit = values => {
     console.log('Received values of form: ', values)
+    getRepositories(values.github)
   };
 
   const onReset = () => {
@@ -60,7 +61,7 @@ const FormRegisterComponent = () => {
       <Heading>Welcome to <strong>S4N Developers</strong></Heading>
       <Description>With S4N Developers, remote teams can organize projects, manage shifting priorities, and get work done.</Description> {/** Asana quote */}
       <Divider orientation="left" style={{ color: '#333', fontWeight: 'normal' }}>
-        Register new user
+        Register new developer
       </Divider>
       <Form
         form={form}

@@ -2,7 +2,7 @@
 export const primaryColor = "#7d67f0"
 
 export const lightColor = "rgba(243, 60, 82, 0.04)"
-export const grayColor = "#464646";
+export const grayColor = "#464646"
 export const blackColor = "#090810"
 export const whiteColor = "#ffffff"
 
