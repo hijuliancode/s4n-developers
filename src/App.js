@@ -46,12 +46,20 @@ const Container = styled.main`
   }
 `
 
-
 const App = () => {
   const [candidates, setCandidates] = useState([])
-  const [flagGetCandidates, setFlagGetCandidates] = useState(true)
+  const [candidate, setCandidate] = useState({keep: 'candidate'})
+  const [flagCandidates, setFlagCandidates] = useState(true)
+
+  useEffect(() => {
+    if (flagCandidates) {
+      setCandidates(API_LS.getAllCandidates)
+      setFlagCandidates(false)
+    }
+  }, [candidates])
 
   const getRepositories = (username) => {
+    console.log('getRepositories => ', username)
     API_GITHUB.getUserData(username)
     .then(data => {
       console.log('Data =>', data)
@@ -60,14 +68,10 @@ const App = () => {
       console.error('Error => ', error)
     })
   }
-  useEffect(() => {
-    if (flagGetCandidates) {
-      setCandidates(API_LS.getAllCandidates)
-      setFlagGetCandidates(false)
-    }
-    
-    console.log('candidates => ', candidates)
-  }, [candidates])
+  const saveCandidate = (newCandidate) => {
+    API_LS.setCandidate(newCandidate)
+  }
+  
   return (
     <Wrapper>
       <Container>
@@ -76,7 +80,10 @@ const App = () => {
             <Route
               exact
               path="/"
-              component={() => <HomeComponent getRepositories={getRepositories} />}
+              component={() => <HomeComponent
+                  getRepositories={getRepositories}
+                  saveCandidate={saveCandidate}
+                />}
             />
             <Route
               exact

@@ -1,5 +1,6 @@
 import React, { useState, createRef } from 'react'
 import styled from 'styled-components'
+import uuid from 'uuid/dist/v4'
 
 import {
   Form,
@@ -10,6 +11,7 @@ import {
   DatePicker,
   Divider,
 } from 'antd'
+
 
 const FormRegisterElm = styled.div`
   display: flex;
@@ -42,14 +44,15 @@ const Buttons = styled.div`
   }
 `
 
-const FormRegisterComponent = ({getRepositories}) => {
+const FormRegisterComponent = ({getRepositories, saveCandidate}) => {
   const formRef = createRef();
   const [form] = Form.useForm();
-  const [candidate, setcandidate] = useState({})
 
-  const onSubmit = values => {
-    console.log('Received values of form: ', values)
-    getRepositories(values.github)
+  const onSubmit = newCandidate => {
+    newCandidate.id = uuid()
+    console.log('Received newCandidate of form: ', newCandidate)
+    saveCandidate(newCandidate)
+    // getRepositories(newCandidate.github)
   };
 
   const onReset = () => {
@@ -123,6 +126,7 @@ const FormRegisterComponent = ({getRepositories}) => {
             <Form.Item
               name="github"
               label="Github"
+              autoComplete="off"
               rules={[ { required: true, message: 'Please input a Github!' }]}
             >
               <Input />
