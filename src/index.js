@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
 
+import gradiIsotipo from './images/design/misc/logo-s4n.svg'
+
 // Styles
 import 'antd/dist/antd.css'
 import { createGlobalStyle, ThemeProvider } from "styled-components"
@@ -23,6 +25,21 @@ export const GlobalStyle = createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
     margin: 0;
     overflow-x: hidden;
+    position: relative;
+    &:after {
+      background-image: url(${gradiIsotipo});
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: 100%;
+      bottom: 0;
+      content: "";
+      left: 0;
+      opacity: 0.5;
+      position: absolute;
+      right: 0;
+      top: 0;
+      z-index: -1; 
+    }
   }
   code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
