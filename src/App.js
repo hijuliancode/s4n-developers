@@ -2,12 +2,17 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 
-import API_GITHUB from './services/github.service';
-import { API_LS } from './services/localstorage.service';
+import {
+  FullscreenOutlined,
+  FullscreenExitOutlined
+} from '@ant-design/icons'
 
-import HomeComponent from './components/Home';
-import CandidatesComponent from './components/Candidates';
-import CandidateComponent from './components/Candidate';
+import API_GITHUB from './services/github.service'
+import { API_LS } from './services/localstorage.service'
+
+import HomeComponent from './components/Home'
+import CandidatesComponent from './components/Candidates'
+import CandidateComponent from './components/Candidate'
 
 // Styled Elements
 const Alerts = styled.div`
@@ -45,8 +50,28 @@ const Container = styled.main`
     /* padding: ${props => props.theme.baseSize * 10}px ${props => props.theme.baseSize * 10}px; */
   }
 `
+const ScreenIcons = styled.button`
+  background-color: transparent;
+  border: 0;
+  bottom: 16px;
+  color: ${props => props.theme.whiteColor};
+  cursor: pointer;
+  font-size: 1.2rem;
+  position: fixed;
+  right: 16px;
+  transition: transform 0.3s ease-in-out;
+  &:active,
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    color: orange;
+    transform: translateY(3px);
+  }
+`
 
 const App = () => {
+  const [fullScreen, setFullScreen] = useState(false)
   const [candidates, setCandidates] = useState([])
   const [candidate, setCandidate] = useState({keep: 'candidate'})
   const [flagCandidates, setFlagCandidates] = useState(true)
@@ -78,6 +103,25 @@ const App = () => {
     API_LS.setCandidate(newCandidate)
   }
   
+  const openFullScreen = () => {
+    document.getElementById('root')
+      .requestFullscreen()
+      .then(() => {
+        setFullScreen(true)
+      })
+      .catch((err) => console.log(`Coudn't open in fullscreen mode`))
+  }
+  const closeFullScreen = () => {
+    document.exitFullscreen()
+    setFullScreen(false)
+  }
+  const toggleFullScreen = () => {
+    (fullScreen)
+      ? closeFullScreen()
+      : openFullScreen()
+    ;
+  }
+
   return (
     <Wrapper>
       <Container>
@@ -112,6 +156,13 @@ const App = () => {
         </Router>
       </Container>
       <Alerts/>
+      <ScreenIcons onClick={() => toggleFullScreen()}>
+        {
+          (fullScreen)
+          ? <FullscreenExitOutlined />
+          : <FullscreenOutlined />
+        }
+      </ScreenIcons>
     </Wrapper>
   )
 }
