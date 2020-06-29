@@ -17,6 +17,9 @@
   User Design: Mateusz Dembek
   Dribble: https://dribbble.com/shots/3470809-User-Profile/attachments/763960
 
+	Home Banner: Oliver Cole
+	Unsplash: https://unsplash.com/photos/kyfbj21HwfA
+
   /* SITE */
 	Last update:2020/28/06
 	Language: English
