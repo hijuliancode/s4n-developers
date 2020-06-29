@@ -34,11 +34,11 @@ This site was inspired at [Ant Design](https://ant.design/docs/spec/introduce) G
 
 ### Screens 📺
 
-https://github.com/hijuliancode/images/blob/master/S4N/Captura%20de%20Pantalla%202020-06-29%20a%20la(s)%206.50.29%20a.%C2%A0m..png?raw=true
+<img src="https://github.com/hijuliancode/images/blob/master/S4N/Captura%20de%20Pantalla%202020-06-29%20a%20la(s)%206.50.29%20a.%C2%A0m..png?raw=true" />
 
-https://github.com/hijuliancode/images/blob/master/S4N/Captura%20de%20Pantalla%202020-06-29%20a%20la(s)%206.50.43%20a.%C2%A0m..png?raw=true
+<img src="https://github.com/hijuliancode/images/blob/master/S4N/Captura%20de%20Pantalla%202020-06-29%20a%20la(s)%206.50.43%20a.%C2%A0m..png?raw=true" />
 
-https://github.com/hijuliancode/images/blob/master/S4N/Captura%20de%20Pantalla%202020-06-29%20a%20la(s)%206.50.53%20a.%C2%A0m..png?raw=true
+<img src="https://github.com/hijuliancode/images/blob/master/S4N/Captura%20de%20Pantalla%202020-06-29%20a%20la(s)%206.50.53%20a.%C2%A0m..png?raw=true" />
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
