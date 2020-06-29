@@ -15,13 +15,13 @@ const CandidateElm = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  @media screen and (${props => props.theme.mq.md}) {
+  @media screen and (${props => props.theme.mq.lg}) {
     display: grid;
     grid-template-areas: 
       'area_topbar area_topbar'
       'area_detail area_repositories'
     ;
-    grid-template-columns: 30% 70%;
+    grid-template-columns: 35% 65%;
     grid-template-rows: auto 1fr;
     width: 100%;
   }
@@ -49,6 +49,7 @@ const TopBar = styled.div`
   align-items: center;
   display: flex;
   grid-area: area_topbar;
+  height: 40px;
   margin-bottom: calc(${props => props.theme.baseSize} * 4px);
   padding: 0 calc(${props => props.theme.baseSize} * 4px);
   text-align: right;
@@ -60,7 +61,7 @@ const IconNewCandidate = styled(ArrowLeftOutlined)`
   margin-right: calc(${props => props.theme.baseSize} * 2px);
 `
 
-const CandidateComponent = ({candidate = {}}) => (
+const CandidateComponent = ({candidate}) => (
   <CandidateElm>
     <TopBar>
       <Link to="/candidates">
@@ -69,7 +70,7 @@ const CandidateComponent = ({candidate = {}}) => (
       </Link>
     </TopBar>
     <AreaDetail>
-      <DetailComponent/>
+      <DetailComponent candidate={candidate} />
     </AreaDetail>
     <AreaRepositories>
       <RepositoriesComponent />

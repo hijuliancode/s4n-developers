@@ -1,7 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
-import * as serviceWorker from './serviceWorker'
 
 import gradiIsotipo from './images/design/misc/logo-s4n.svg'
 
@@ -40,10 +39,9 @@ export const GlobalStyle = createGlobalStyle`
       top: 0;
       z-index: -1; 
     }
+    .text-center { text-align: center; }
   }
-  code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
-  }
+  code { font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace; }
   @keyframes animation-skeleton {0%{background-position:-200px 0;}100%{background-position:calc(200px + 100%) 0;}}
 `;
 
@@ -54,8 +52,3 @@ ReactDOM.render(
   </ThemeProvider>,
   document.getElementById('root')
 );
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister()
