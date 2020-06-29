@@ -111,9 +111,9 @@ const FormRegisterComponent = ({saveCandidate, setFlagCandidates, candidatesLeng
           </Col>
           <Col span={12}>
             <Form.Item
-              name="id_card"
-              label="Identification Card"
-              rules={[{ required: true, message: 'Please input a Identification Card!' }]}
+              name="id_number"
+              label="Identification Number"
+              rules={[{ required: true, message: 'Please input a Identification Number!' }]}
             >
             <Input />
           </Form.Item>
