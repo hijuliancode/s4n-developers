@@ -18,7 +18,6 @@ import {
   DeleteOutlined
 } from '@ant-design/icons'
 
-
 const FormRegisterElm = styled.div`
   display: flex;
   flex-direction: column;
@@ -63,8 +62,9 @@ const FormRegisterComponent = ({saveCandidate, setFlagCandidates, candidatesLeng
   const [form] = Form.useForm();
 
   const onSubmit = (newCandidate) => {
-    newCandidate.id = uuid()
-    newCandidate.key = uuid()
+    const newCandidateID = uuid()
+    newCandidate.id = newCandidateID
+    newCandidate.key = newCandidateID
     newCandidate.full_name = `${newCandidate.name} ${newCandidate.last_name}`
     saveCandidate(newCandidate)
     setFlagCandidates(true)

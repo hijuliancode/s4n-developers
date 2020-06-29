@@ -144,10 +144,10 @@ const App = () => {
               exact
               path="/candidates/:id"
               render={(props) => {
-                const candidate = candidates.filter(candidate => candidate._id === props.match.params.id)
+                const candidate = candidates.filter(candidate => candidate.id === props.match.params.id)
                 return (
                   <CandidateComponent
-                    candidate={candidate[0]} // 0 filter returns a list
+                    candidate={candidate[0]} // 0 because filter returns a list
                   />
                 )
               }}
