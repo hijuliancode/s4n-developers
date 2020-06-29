@@ -8,7 +8,7 @@ import {
 } from '@ant-design/icons'
 
 import API_GITHUB from './services/github.service'
-import { API_LS } from './services/localstorage.service'
+import API_LS from './services/localstorage.service'
 
 import HomeComponent from './components/Home'
 import CandidatesComponent from './components/Candidates'
@@ -53,12 +53,12 @@ const Container = styled.main`
 const ScreenIcons = styled.button`
   background-color: transparent;
   border: 0;
-  bottom: 16px;
+  bottom: calc(${props => props.theme.baseSize} * 4px);
   color: ${props => props.theme.whiteColor};
   cursor: pointer;
   font-size: 1.2rem;
   position: fixed;
-  right: 16px;
+  right: calc(${props => props.theme.baseSize} * 4px);
   transition: transform 0.3s ease-in-out;
   &:active,
   &:focus {
@@ -73,7 +73,7 @@ const ScreenIcons = styled.button`
 const App = () => {
   const [fullScreen, setFullScreen] = useState(false)
   const [candidates, setCandidates] = useState([])
-  const [candidate, setCandidate] = useState({keep: 'candidate'})
+  // const [candidate, setCandidate] = useState({keep: 'candidate'})
   const [flagCandidates, setFlagCandidates] = useState(true)
 
   useEffect(() => {
@@ -81,17 +81,15 @@ const App = () => {
       setCandidates(API_LS.getAllCandidates)
       setFlagCandidates(false)
     }
-  }, [candidates])
+  }, [candidates, flagCandidates])
 
   const getRepositories = async (github_username) => {
-    console.log('getRepositories => ', github_username)
     const data = await API_GITHUB.getRepos(github_username)
       .then(_resp => _resp)
       .catch(error => console.error('Error => ', error))
     return data
   }
   const getUserData = async (github_username) => {
-    console.log('getUserData => ', github_username)
     const data = await API_GITHUB.getUserData(github_username)
       .then(_resp => _resp)
       .catch(error => console.error('Error => ', error))
@@ -101,6 +99,7 @@ const App = () => {
     const {data} = await getUserData(newCandidate.github_username)
     newCandidate.github_data = data;
     API_LS.setCandidate(newCandidate)
+    setFlagCandidates(true)
   }
   
   const openFullScreen = () => {
@@ -109,7 +108,7 @@ const App = () => {
       .then(() => {
         setFullScreen(true)
       })
-      .catch((err) => console.log(`Coudn't open in fullscreen mode`))
+      .catch((err) => console.error(`Coudn't open in fullscreen mode`))
   }
   const closeFullScreen = () => {
     document.exitFullscreen()
@@ -131,8 +130,9 @@ const App = () => {
               exact
               path="/"
               component={() => <HomeComponent
-                  getRepositories={getRepositories}
                   saveCandidate={saveCandidate}
+                  setFlagCandidates={setFlagCandidates}
+                  candidatesLenght={candidates.length}
                 />}
             />
             <Route
