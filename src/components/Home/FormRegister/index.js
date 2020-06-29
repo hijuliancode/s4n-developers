@@ -1,4 +1,5 @@
-import React, { useState, createRef } from 'react'
+import React, { createRef } from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import uuid from 'uuid/dist/v4'
 
@@ -11,6 +12,11 @@ import {
   DatePicker,
   Divider,
 } from 'antd'
+
+import {
+  MenuOutlined,
+  DeleteOutlined
+} from '@ant-design/icons'
 
 
 const FormRegisterElm = styled.div`
@@ -37,22 +43,31 @@ const Buttons = styled.div`
   justify-content: flex-end;
   margin-top: auto;
   button {
-    width: 33%;
+    &:not(.btn-fluid) {
+      width: 33%;
+    }
     &:not(:last-child) {
-      margin-right: 16px;
+      margin-right: calc(${props => props.theme.baseSize} * 4px);
     }
   }
 `
+const ViewCandidates = styled(Buttons)`
+  padding-top: calc(${props => props.theme.baseSize} * 3px);
+`
+const IconCandidates = styled(MenuOutlined)`
+  margin-right: calc(${props => props.theme.baseSize} * 2px);
+`
 
-const FormRegisterComponent = ({getRepositories, saveCandidate}) => {
+const FormRegisterComponent = ({saveCandidate, setFlagCandidates, candidatesLenght}) => {
   const formRef = createRef();
   const [form] = Form.useForm();
 
-  const onSubmit = newCandidate => {
+  const onSubmit = (newCandidate) => {
     newCandidate.id = uuid()
-    console.log('Received newCandidate of form: ', newCandidate)
+    newCandidate.key = uuid()
+    newCandidate.full_name = `${newCandidate.name} ${newCandidate.last_name}`
     saveCandidate(newCandidate)
-    // getRepositories(newCandidate.github)
+    setFlagCandidates(true)
   };
 
   const onReset = () => {
@@ -73,6 +88,7 @@ const FormRegisterComponent = ({getRepositories, saveCandidate}) => {
         onFinish={onSubmit}
         ref={formRef}
         scrollToFirstError
+        hideRequiredMark
       >
         <Row gutter={16}>
           <Col span={12}>
@@ -107,7 +123,7 @@ const FormRegisterComponent = ({getRepositories, saveCandidate}) => {
               name="birthday"
               label="Date of birth"
             >
-              <DatePickerElm />
+              <DatePickerElm format="DD/MM/YYYY" />
             </Form.Item>
           </Col>
           <Col span={12}>
@@ -133,15 +149,29 @@ const FormRegisterComponent = ({getRepositories, saveCandidate}) => {
             </Form.Item>
           </Col>
         </Row>
-        
         <Buttons>
+          <Button
+            htmlType="button"
+            onClick={onReset}
+            className="btn-fluid"
+            >
+            <DeleteOutlined />
+          </Button>
           <Button type="primary" htmlType="submit">
             Submit
           </Button>
-          <Button htmlType="button" onClick={onReset}>
-            Reset
-          </Button>
         </Buttons>
+        {
+          (candidatesLenght)
+            ?
+              <ViewCandidates>
+                <Link to="/candidates" onClick={onReset}>
+                  <IconCandidates />
+                  See all candidates ({candidatesLenght})
+                </Link>
+              </ViewCandidates>
+            : null
+        }
       </Form>
 
     </FormRegisterElm>

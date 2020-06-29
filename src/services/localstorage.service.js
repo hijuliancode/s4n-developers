@@ -1,4 +1,4 @@
-export const API_LS = {
+const API_LS = {
   getAllCandidates: () => {
     const candidates = JSON.parse(localStorage.getItem('candidates'))
     return (!candidates) ? [] : candidates
@@ -15,7 +15,7 @@ export const API_LS = {
     let candidates = this.getAllCandidates()
     if (candidates.length) {
       // check if this candidate already exists
-      if (candidates.find(candidate => candidate.github_username == newCandidate.github_username)) {
+      if (candidates.find(candidate => candidate.github_username === newCandidate.github_username)) {
         const data = { message: 'This Candidate already exists' }
         console.error(data.message)
         return data
@@ -44,3 +44,5 @@ export const API_LS = {
     // Save new list at localstorage
   }
 }
+
+export default API_LS

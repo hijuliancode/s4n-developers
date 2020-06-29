@@ -1,12 +1,12 @@
 /* TEAM */
-	UI Developer:Julian Sosa
+	UI Developer: Julian Sosa
 	Contact: hijuliansosa [at] gmail.com
 	Twitter: @hijuliancode
-	From:Sibate, Cundinamarca, Colombia
+	From: Sibate, Cundinamarca, Colombia
 
 /* THANKS */
-  Inspiration: Meraki 🦄
-	From:Universes
+  Inspiration: ♥️ Meraki 🦄
+	From: All Multiverses
 
   Ilustrations: Lukaz Zadam
   Website: https://lukaszadam.com/illustrations
@@ -20,5 +20,5 @@
   /* SITE */
 	Last update:2020/28/06
 	Language: English
-	Doctype:HTML5
+	Doctype: HTML5
 	IDE: Visual Studio Code, SketchApp, 

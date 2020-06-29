@@ -15,7 +15,7 @@ const MainBannerElm = styled.div`
   justify-content: center;
 `
 const Characters = styled.div`
-  column-gap: 15px;
+  column-gap: calc(${props => props.theme.baseSize} * 4px);
   display: flex;
   justify-content: center;
   width: 100%;
@@ -25,7 +25,7 @@ const Characters = styled.div`
 `
 const Character = styled.img`
   &:not(:last-child) {
-    margin-right: 16px;
+    margin-right: calc(${props => props.theme.baseSize} * 4px);
   }
 `
 
