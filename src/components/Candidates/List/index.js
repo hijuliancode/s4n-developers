@@ -25,7 +25,8 @@ const ListComponent = ({candidates}) => {
     <ListElm>
       <Table
         dataSource={dataSource}
-        pagination={{ defaultPageSize: 5, showSizeChanger: true, pageSizeOptions: ['10', '20', '30'], hideOnSinglePage: true}}
+        rowKey={record => record.id}
+        pagination={{ defaultPageSize: 5, showSizeChanger: true, pageSizeOptions: ['5', '10', '20', '30'], hideOnSinglePage: true}}
       >
         <Column title="Name" dataIndex="full_name" key="full_name" />
         <Column title="Github" dataIndex="github_username" key="github_username" />

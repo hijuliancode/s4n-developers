@@ -14,7 +14,14 @@ import RepositoriesComponent from './Repositories'
 const CandidateElm = styled.div`
   display: flex;
   flex-direction: column;
+  padding: 0 ${props => props.theme.baseSize * 2}px ${props => props.theme.baseSize * 2}px;
   width: 100%;
+  @media screen and (${props => props.theme.mq.sm}) {
+    padding: 0 ${props => props.theme.baseSize * 3}px ${props => props.theme.baseSize * 3}px;
+  }
+  @media screen and (${props => props.theme.mq.md}) {
+    padding: 0 ${props => props.theme.baseSize * 4}px ${props => props.theme.baseSize * 4}px;
+  }
   @media screen and (${props => props.theme.mq.lg}) {
     display: grid;
     grid-template-areas: 
@@ -26,24 +33,17 @@ const CandidateElm = styled.div`
     width: 100%;
   }
 `
-const Area = styled.div`
-  padding: ${props => props.theme.baseSize * 4}px ${props => props.theme.baseSize * 4}px;
-  @media screen and (${props => props.theme.mq.sm}) {
-    padding: ${props => props.theme.baseSize * 6}px ${props => props.theme.baseSize * 6}px;
-  }
-  @media screen and (${props => props.theme.mq.md}) {
-    padding: ${props => props.theme.baseSize * 8}px ${props => props.theme.baseSize * 8}px;
-  }
-  @media screen and (${props => props.theme.mq.lg}) {
-    padding: ${props => props.theme.baseSize * 10}px ${props => props.theme.baseSize * 10}px;
-  }
-`
-const AreaDetail = styled(Area)`
+const AreaDetail = styled.div`
   grid-area: area_detail;
+  @media screen and (${props => props.theme.mq.lg}) {
+    padding-right: 0;
+  }
 `
-const AreaRepositories = styled(Area)`
-  background-color: blue;
+const AreaRepositories = styled.div`
   grid-area: area_repositories;
+  @media screen and (${props => props.theme.mq.lg}) {
+    padding-left: 0;
+  }
 `
 const TopBar = styled.div`
   align-items: center;
@@ -73,7 +73,7 @@ const CandidateComponent = ({candidate}) => (
       <DetailComponent candidate={candidate} />
     </AreaDetail>
     <AreaRepositories>
-      <RepositoriesComponent />
+      <RepositoriesComponent candidate={candidate} />
     </AreaRepositories>
   </CandidateElm>
 )

@@ -83,12 +83,6 @@ const App = () => {
     }
   }, [candidates, flagCandidates])
 
-  const getRepositories = async (github_username) => {
-    const data = await API_GITHUB.getRepos(github_username)
-      .then(_resp => _resp)
-      .catch(error => console.error('Error => ', error))
-    return data
-  }
   const getUserData = async (github_username) => {
     const data = await API_GITHUB.getUserData(github_username)
       .then(_resp => _resp)

@@ -62,9 +62,7 @@ const FormRegisterComponent = ({saveCandidate, setFlagCandidates, candidatesLeng
   const [form] = Form.useForm();
 
   const onSubmit = (newCandidate) => {
-    const newCandidateID = uuid()
-    newCandidate.id = newCandidateID
-    newCandidate.key = newCandidateID
+    newCandidate.id = uuid()
     newCandidate.full_name = `${newCandidate.name} ${newCandidate.last_name}`
     saveCandidate(newCandidate)
     setFlagCandidates(true)

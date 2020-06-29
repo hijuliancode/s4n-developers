@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import Skeleton from '../../shared/skeleton'
 
-import { Avatar, Row, Form, Col, Button, Input } from 'antd'
+import { Avatar, Row, Col } from 'antd'
 import {
   ExportOutlined,
   IdcardOutlined,
@@ -12,8 +12,6 @@ import {
   UsergroupAddOutlined,
   UserSwitchOutlined
 } from '@ant-design/icons'
-
-const { TextArea } = Input;
 
 const DetailElm = styled.div`
   display: flex;
@@ -48,7 +46,7 @@ const LinkBio = styled.span`
   display: inline-block;
   margin-left: calc(${props => props.theme.baseSize} * 2px);
 `
-const CommentBox = styled.div`
+const FooterBox = styled.div`
   padding-top: calc(${props => props.theme.baseSize} * 4px);
 `
 
@@ -65,7 +63,7 @@ const DetailComponent = ({candidate}) => {
             <p>
               {candidate.github_data.bio}
               <LinkBio>
-                <a href={candidate.github_data.blog} target="_blank">
+                <a href={candidate.github_data.blog} target="_blank" rel="noopener noreferrer">
                   <ExportOutlined />
                 </a>
               </LinkBio>
@@ -96,16 +94,8 @@ const DetailComponent = ({candidate}) => {
               <Icon><IdcardOutlined /></Icon> {candidate.id_number}
             </Col>
           </Row>
-          <CommentBox>
-            <Form.Item>
-              <TextArea rows={4} />
-            </Form.Item>
-            <Form.Item>
-              <Button htmlType="submit" type="primary">
-                Add Comment
-              </Button>
-            </Form.Item>
-          </CommentBox>
+          <FooterBox>
+          </FooterBox>
         </>
       ) : (
         <Skeleton />
