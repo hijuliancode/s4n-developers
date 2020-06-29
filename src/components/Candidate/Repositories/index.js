@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { Skeleton, Table, Tooltip } from 'antd'
-import Column from 'antd/lib/table/Column'
 
 import API_GITHUB from '../../../services/github.service'
 import {
@@ -68,34 +67,60 @@ const RepositoriesComponent = ({candidate}) => {
     return data
   }
 
+  const columns = [
+    {
+      title: "Name",
+      dataIndex: "name",
+      key: "name",
+      sorter: (a, b) => a.name.length - b.name.length,
+      sortDirections: ['ascend', 'descend', 'ascend'],
+    },
+    {
+      title: "Language",
+      dataIndex: "language",
+      key: "language",
+      sorter: (a, b) => a.language.length - b.language.length,
+      sortDirections: ['ascend', 'descend', 'ascend'],
+    },
+    {
+      title: "Default branch",
+      dataIndex: "default_branch",
+      key: "default_branch",
+      sorter: (a, b) => a.default_branch.length - b.default_branch.length,
+      sortDirections: ['ascend', 'descend', 'ascend'],
+    },
+    {
+      title: "Description",
+      dataIndex: "description",
+      key: "description",
+      sorter: (a, b) => a.description.length - b.description.length,
+      sortDirections: ['ascend', 'descend', 'ascend'],
+    },
+    {
+      title: "",
+      dataIndex: "html_url",
+      key: "html_url", render: (html_url) => (
+        <Tooltip placement="top" title="View on Github">
+          <a href={`${html_url}`} target="_blank" rel="noopener noreferrer">
+            <EyeOutlined />
+          </a>
+        </Tooltip>
+      )
+    },
+  ]
+
   return (
     <RepositoriesElm>
       {(candidate) ? (
         <>
           <Table
-            loading={loading}
+            columns={columns}
             dataSource={dataSource}
+            loading={loading}
             rowKey={record => record.id}
             size="middle"
             pagination={{ defaultPageSize: 5, showSizeChanger: true, pageSizeOptions: ['5', '10', '20', '30'], hideOnSinglePage: true}}
-          >
-            <Column title="Name" dataIndex="name" key="name" />
-            <Column title="Language" dataIndex="language" key="language" />
-            <Column title="Default Branch" dataIndex="default_branch" key="default_branch" />
-            <Column title="Description" dataIndex="description" key="description" />
-            <Column
-              title=""
-              dataIndex="html_url"
-              key="html_url"
-              render={html_url => (
-                <Tooltip placement="top" title="View on Github">
-                  <a href={`${html_url}`} target="_blank" rel="noopener noreferrer">
-                    <EyeOutlined />
-                  </a>
-                </Tooltip>
-              )}
-            />
-          </Table>
+          />
         </>
       ) : (
         <SkeletonElm>
